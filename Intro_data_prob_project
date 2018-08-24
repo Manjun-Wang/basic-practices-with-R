@@ -1,0 +1,78 @@
+---
+title: "Exploring the BRFSS data"
+output: 
+  html_document: 
+    fig_height: 4
+    highlight: pygments
+    theme: spacelab
+---
+
+## Setup
+
+### Load packages
+
+```{r load-packages, message = FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+### Load data
+
+```{r load-data}
+data(brfss2013.RData)
+```
+* * *
+
+## Part 1: 
+There are 491775 rows and 330 columns, with 330 variables in this data set. All the data is collected in 2013 by making health related telephone surveys. So the data is from observational studies which is with no random assignment. It is not causal.
+
+The data is collected in all 50 states, the District of Columnia, Puerto Rico, Guam, and the US Virgin Islands, which suggests that the studies are with random sampling. So, it is generalizable.
+* * *
+
+## Part 2: Research questions
+
+**Research quesion 1:**
+Do most of people who participate in the survey have problems with their physical health? The reason why I come up with this question is that physical health is the fundamental element to people's daily life, and the situation of one's physical health can influence the person's behavior a lot. Thus, I would like to make a histogram to see whether or not most of the people are in good condition. 
+
+**Research quesion 2:**
+Which state has the largest number of health care coverge? Health care coverage is essential to people's health. The data could tell us in which state poeple can enjoy the benefit of the health care coverage the most.
+
+**Research quesion 3:**
+which state has the most number of people whose general health status is "excelllent". since these surveys are health-related, I am curious about which state has the most extremely healthy people.
+
+* * *
+
+## Part 3: Exploratory data analysis
+
+**Research quesion 1:**
+
+```{r}
+ggplot(data = brfss2013, aes(x = physhlth)) + geom_histogram(binwidth = 1)
+```
+
+
+
+**Research quesion 2:**
+
+```{r}
+brfss2013 <- brfss2013 %>% 
+  group_by(X_state) %>%
+  filter(hlthpln1 == 'Yes') %>%
+  summarise(n=n()) %>%
+  arrange(desc(n))
+
+```
+
+
+
+**Research quesion 3:**
+
+```{r}
+brfss2013 <- brfss2013 %>% 
+  group_by(X_state) %>%
+  filter(genhlth == 'Excellent') %>%
+  summarise(n=n()) %>%
+  arrange(desc(n))
+
+```
+
