@@ -60,6 +60,7 @@ brfss2013 <- brfss2013 %>%
   filter(hlthpln1 == 'Yes') %>%
   summarise(n=n()) %>%
   arrange(desc(n))
+  print(brfss2013)
 
 ```
 
@@ -73,6 +74,6 @@ brfss2013 <- brfss2013 %>%
   filter(genhlth == 'Excellent') %>%
   summarise(n=n()) %>%
   arrange(desc(n))
-
+print(brfss2013)
 ```
 
