@@ -1,4 +1,3 @@
----
 title: "Probability"
 output: statsr:::statswithr_lab
 ---
