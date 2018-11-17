@@ -1,6 +1,6 @@
 
 title: "Exploring the BRFSS data"
-output: 
+output
   html_document: 
     fig_height: 4
     highlight: pygments
