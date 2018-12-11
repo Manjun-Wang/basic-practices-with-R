@@ -1,2 +1,2 @@
-# basic-practices-with-
+# basic-practices-with-R
 R practices
